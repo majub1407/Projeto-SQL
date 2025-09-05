@@ -1,0 +1,9 @@
+{
+	"name": "Maria-Julia",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ae08170c-09b5-4e4b-b11e-5a637c930bc0",
+		"tenantId": "11dbbfe2-89b8-4549-be10-cec364e59551"
+	}
+}
