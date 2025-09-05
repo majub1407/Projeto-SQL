@@ -1,0 +1,13 @@
+{
+	"name": "d_burguer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "tabela dburguer",
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=rm558195cp4;EndpointSuffix=core.windows.net;",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDQ4MkFERkU3LTFDNTQtNEM0RS04RjRGLTYzMzg3NDI2NENEMV9jNmQyZGI0Ny00Y2Y1LTQ4MzUtYWVmMC0wZWFlMDVhMTU0OGEiDQp9"
+		}
+	}
+}
