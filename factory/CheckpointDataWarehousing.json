@@ -1,0 +1,9 @@
+{
+	"name": "CheckpointDataWarehousing",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9bdbeaf9-5b54-45f9-a92d-4b3d08844866",
+		"tenantId": "11dbbfe2-89b8-4549-be10-cec364e59551"
+	}
+}
