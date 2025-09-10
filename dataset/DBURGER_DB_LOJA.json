@@ -1,0 +1,24 @@
+{
+	"name": "DBURGER_DB_LOJA",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "d_burguer",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Tabelas_burguer"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
