@@ -1,0 +1,25 @@
+{
+	"name": "DBURGER_DB_BAIRRO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "d_burguer",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Tabelas_burguer"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "origemdburguer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"name": "DB_SUB_CATEGORIA_PROD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "d_burguer",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Tabelas_burguer"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "subcategoria",
+				"container": "origemdburguer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
