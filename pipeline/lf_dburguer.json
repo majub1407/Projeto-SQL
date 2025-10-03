@@ -54,7 +54,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DB_SUB_CATEGORIA_PROD",
+						"referenceName": "ARQUIVOS",
 						"type": "DatasetReference"
 					}
 				]
@@ -392,6 +392,122 @@
 				"outputs": [
 					{
 						"referenceName": "DBURGER_DB_CIDADE",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DBURGER_DB_CLI_FISICA",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT NR_CLIENTE, DT_NASCIMENTO, FL_SEXO_BIOLOGICO, ds_genero, nr_cpf FROM DBURGER.DB_CLI_FISICA;",
+						"partitionOption": "None",
+						"numberPrecision": 38,
+						"numberScale": 18,
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CD_ORACLEFIAP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DBURGER_DB_CLI_FISICA",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DBURGER_DB_CLIENT",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT nr_cliente, nm_cliente, qt_estrelas, vl_medio_compra, st_cliente, ds_email, nr_telefone, qt_pedidos_realizados, dt_ultima_compra, vl_ultimo_pedido, obj_pesquisa_satisfacao from DBURGER.DB_CLIENTE;\n",
+						"partitionOption": "None",
+						"numberPrecision": 38,
+						"numberScale": 18,
+						"queryTimeout": "02:00:00"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "CD_ORACLEFIAP",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "DBURGER_DB_END_CLI",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "select NR_CLIENTE,CD_LOGRADOURO_CLI,NR_END,DS_COMPLEMENTO_END,DT_INICIO, DT_TERMINO, ST_END from DBURGER.DB_END_CLI;\n",
+						"partitionOption": "None",
+						"numberPrecision": 38,
+						"numberScale": 18,
+						"queryTimeout": "02:00:00"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "CD_ORACLEFIAP",
 						"type": "DatasetReference"
 					}
 				]

@@ -1,14 +1,9 @@
 {
-	"name": "ARQUIVOS",
+	"name": "DBURGER_DB_END_CLI",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "d_burguer",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"NOMEARQUIVO": {
-				"type": "String"
-			}
 		},
 		"folder": {
 			"name": "Tabelas_burguer"
@@ -18,15 +13,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": {
-					"value": "@dataset().NOMEARQUIVO",
-					"type": "Expression"
-				},
 				"container": "origemdburguer"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
-			"firstRowAsHeader": false,
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": []
