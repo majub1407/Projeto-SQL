@@ -1,0 +1,9 @@
+{
+	"name": "cp-2-data-warehousing-558195",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2d8b063c-f5d5-4292-abd5-cfd20c98cd3d",
+		"tenantId": "11dbbfe2-89b8-4549-be10-cec364e59551"
+	}
+}
