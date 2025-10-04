@@ -26,7 +26,8 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -55,7 +56,7 @@
 						"referenceName": "ARQUIVOS",
 						"type": "DatasetReference",
 						"parameters": {
-							"NOMEARQUIVO": "DB_CLI"
+							"NOMEARQUIVO": "dbcli"
 						}
 					}
 				]
@@ -114,7 +115,7 @@
 						"referenceName": "ARQUIVOS",
 						"type": "DatasetReference",
 						"parameters": {
-							"NOMEARQUIVO": "DB_CLI_FISICA"
+							"NOMEARQUIVO": "dbclifisica"
 						}
 					}
 				]
@@ -124,13 +125,13 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "DB_CLI_FISICA",
+						"activity": "DB_CLI",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "DB_CLI",
+						"activity": "DB_CLI_FISICA",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -146,14 +147,17 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow1",
+						"referenceName": "dburguercli",
 						"type": "DataFlowReference",
 						"datasetParameters": {
 							"dbcli": {
-								"NOMEARQUIVO": "DB_CLI"
+								"NOMEARQUIVO": "dbcli"
 							},
 							"dbclifisica": {
-								"NOMEARQUIVO": "DB_CLI_FISICA"
+								"NOMEARQUIVO": "dbclifisica"
+							},
+							"tabeladburguer": {
+								"NOMEARQUIVO": "tabelafinal"
 							}
 						}
 					},

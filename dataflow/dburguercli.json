@@ -19,7 +19,15 @@
 					"name": "dbclifisica"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference"
+					},
+					"name": "tabeladburguer"
+				}
+			],
 			"transformations": [
 				{
 					"name": "join1"
@@ -48,7 +56,11 @@
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join1"
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> tabeladburguer"
 			]
 		}
 	}
