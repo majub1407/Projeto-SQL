@@ -174,7 +174,8 @@
 				"join6 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> tabeladburguer"
+				"     skipDuplicateMapOutputs: true,",
+				"     header: (['NR_CLIENTE','NM_CLIENTE','QT_ESTRELAS','FL_SEXO','NM_LOGRADOURO','NR_CEP','NM_CIDADE','NM_ESTADO'])) ~> tabeladburguer"
 			]
 		}
 	}
