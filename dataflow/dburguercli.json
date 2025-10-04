@@ -45,6 +45,12 @@
 			"transformations": [
 				{
 					"name": "join1"
+				},
+				{
+					"name": "join2"
+				},
+				{
+					"name": "join3"
 				}
 			],
 			"scriptLines": [
@@ -87,7 +93,17 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join1",
-				"join1 sink(allowSchemaDrift: true,",
+				"join1, dbendcli join(dbcli@NR_CLIENTE == dbendcli@NR_CLIENTE,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join2",
+				"join2, dblogradouro join(CD_LOGRADOURO_CLI == CD_LOGRADOURO,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join3",
+				"join3 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> tabeladburguer"
