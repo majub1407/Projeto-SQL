@@ -24,6 +24,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "dblogradouro"
+				},
+				{
+					"dataset": {
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference"
+					},
+					"name": "dbendcli"
 				}
 			],
 			"sinks": [
@@ -68,6 +75,13 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> dblogradouro",
+				"source(output(",
+				"          NR_CLIENTE as short,",
+				"          CD_LOGRADOURO_CLI as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dbendcli",
 				"dbcli, dbclifisica join(dbcli@NR_CLIENTE == dbclifisica@NR_CLIENTE,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
