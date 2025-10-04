@@ -17,6 +17,16 @@
 						"type": "DatasetReference"
 					},
 					"name": "dbclifisica"
+				},
+				{
+					"dataset": {
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference"
+					},
+					"name": "dbend"
+				},
+				{
+					"name": "dblogradouro"
 				}
 			],
 			"sinks": [
@@ -52,6 +62,11 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> dbclifisica",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dbend",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> dblogradouro",
 				"dbcli, dbclifisica join(dbcli@NR_CLIENTE == dbclifisica@NR_CLIENTE,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
