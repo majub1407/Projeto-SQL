@@ -72,6 +72,15 @@
 				},
 				{
 					"name": "join3"
+				},
+				{
+					"name": "join4"
+				},
+				{
+					"name": "join5"
+				},
+				{
+					"name": "join6"
 				}
 			],
 			"scriptLines": [
@@ -110,17 +119,17 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> dbendcli",
 				"source(output(",
-				"          {_col0_} as short,",
-				"          {_col1_} as short,",
-				"          {_col2_} as string",
+				"          CD_BAIRRO as short,",
+				"          CD_CIDADE as short,",
+				"          NM_BAIRRO as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> dbbairro",
 				"source(output(",
-				"          {_col0_} as short,",
-				"          {_col1_} as string,",
-				"          {_col2_} as string",
+				"          CD_CIDADE as short,",
+				"          NM_CIDADE as string,",
+				"          SG_ESTADO as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -147,7 +156,22 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join3",
-				"join3 sink(allowSchemaDrift: true,",
+				"join3, dbbairro join(dblogradouro@CD_BAIRRO == dbbairro@CD_BAIRRO,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join4",
+				"join4, dbcidade join(dbbairro@CD_CIDADE == dbcidade@CD_CIDADE,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join5",
+				"join5, dbestado join(dbcidade@SG_ESTADO == dbestado@SG_ESTADO,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join6",
+				"join6 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> tabeladburguer"
