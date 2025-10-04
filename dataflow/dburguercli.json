@@ -31,6 +31,27 @@
 						"type": "DatasetReference"
 					},
 					"name": "dbendcli"
+				},
+				{
+					"dataset": {
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference"
+					},
+					"name": "dbbairro"
+				},
+				{
+					"dataset": {
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference"
+					},
+					"name": "dbcidade"
+				},
+				{
+					"dataset": {
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference"
+					},
+					"name": "dbestado"
 				}
 			],
 			"sinks": [
@@ -88,6 +109,29 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> dbendcli",
+				"source(output(",
+				"          {_col0_} as short,",
+				"          {_col1_} as short,",
+				"          {_col2_} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dbbairro",
+				"source(output(",
+				"          {_col0_} as short,",
+				"          {_col1_} as string,",
+				"          {_col2_} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dbcidade",
+				"source(output(",
+				"          SG_ESTADO as string,",
+				"          NM_ESTADO as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dbestado",
 				"dbcli, dbclifisica join(dbcli@NR_CLIENTE == dbclifisica@NR_CLIENTE,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",

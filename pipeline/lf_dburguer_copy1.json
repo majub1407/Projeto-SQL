@@ -135,6 +135,18 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "DB_LOGRADOURO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "DB_ENDCLI",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -155,6 +167,12 @@
 							},
 							"dbclifisica": {
 								"NOMEARQUIVO": "dbclifisica"
+							},
+							"dblogradouro": {
+								"NOMEARQUIVO": "dblogradouro"
+							},
+							"dbendcli": {
+								"NOMEARQUIVO": "dbendcli"
 							},
 							"tabeladburguer": {
 								"NOMEARQUIVO": "tabelafinal"
@@ -282,6 +300,183 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"NOMEARQUIVO": "dbendcli"
+						}
+					}
+				]
+			},
+			{
+				"name": "DB_BAIRRO",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT\n  B.CD_BAIRRO,\n  B.CD_CIDADE,\n  B.NM_BAIRRO\nFROM DBURGER.DB_BAIRRO B\n",
+						"partitionOption": "None",
+						"numberPrecision": 38,
+						"numberScale": 18,
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CD_ORACLEFIAP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference",
+						"parameters": {
+							"NOMEARQUIVO": "dbbairro"
+						}
+					}
+				]
+			},
+			{
+				"name": "DB_CIDADE",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT\n  C.CD_CIDADE,\n  C.NM_CIDADE,\n  C.SG_ESTADO\nFROM DBURGER.DB_CIDADE C\n",
+						"partitionOption": "None",
+						"numberPrecision": 38,
+						"numberScale": 18,
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CD_ORACLEFIAP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference",
+						"parameters": {
+							"NOMEARQUIVO": "dbcidade"
+						}
+					}
+				]
+			},
+			{
+				"name": "DB_ESTADO",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT\n  E.SG_ESTADO,\n  E.NM_ESTADO\nFROM DBURGER.DB_ESTADO E",
+						"partitionOption": "None",
+						"numberPrecision": 38,
+						"numberScale": 18,
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CD_ORACLEFIAP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference",
+						"parameters": {
+							"NOMEARQUIVO": "dbestado"
 						}
 					}
 				]
