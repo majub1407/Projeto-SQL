@@ -167,6 +167,124 @@
 					},
 					"traceLevel": "Fine"
 				}
+			},
+			{
+				"name": "DB_LOGRADOURO",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT\n  L.CD_LOGRADOURO,\n  L.CD_BAIRRO,\n  L.NM_LOGRADOURO,\n  L.NR_CEP\nFROM DBURGER.DB_LOGRADOURO L\n",
+						"partitionOption": "None",
+						"numberPrecision": 38,
+						"numberScale": 18,
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CD_ORACLEFIAP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference",
+						"parameters": {
+							"NOMEARQUIVO": "dblogradouro"
+						}
+					}
+				]
+			},
+			{
+				"name": "DB_ENDCLI",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"oracleReaderQuery": "SELECT\n  EC.NR_CLIENTE,\n  EC.CD_LOGRADOURO_CLI\nFROM DBURGER.DB_END_CLI EC\n",
+						"partitionOption": "None",
+						"numberPrecision": 38,
+						"numberScale": 18,
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CD_ORACLEFIAP",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ARQUIVOS",
+						"type": "DatasetReference",
+						"parameters": {
+							"NOMEARQUIVO": "dbendcli"
+						}
+					}
+				]
 			}
 		],
 		"annotations": []
