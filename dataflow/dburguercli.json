@@ -23,9 +23,6 @@
 						"referenceName": "ARQUIVOS",
 						"type": "DatasetReference"
 					},
-					"name": "dbend"
-				},
-				{
 					"name": "dblogradouro"
 				}
 			],
@@ -62,11 +59,15 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> dbclifisica",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          CD_LOGRADOURO as short,",
+				"          CD_BAIRRO as short,",
+				"          NM_LOGRADOURO as string,",
+				"          NR_CEP as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> dbend",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> dblogradouro",
+				"     ignoreNoFilesFound: false) ~> dblogradouro",
 				"dbcli, dbclifisica join(dbcli@NR_CLIENTE == dbclifisica@NR_CLIENTE,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
