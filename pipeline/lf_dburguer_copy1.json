@@ -192,6 +192,15 @@
 							"dbendcli": {
 								"NOMEARQUIVO": "dbendcli"
 							},
+							"dbbairro": {
+								"NOMEARQUIVO": "dbbairro"
+							},
+							"dbcidade": {
+								"NOMEARQUIVO": "dbcidade"
+							},
+							"dbestado": {
+								"NOMEARQUIVO": "dbestado"
+							},
 							"tabeladburguer": {
 								"NOMEARQUIVO": "tabelafinal"
 							}
